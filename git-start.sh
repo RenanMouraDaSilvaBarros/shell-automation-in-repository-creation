@@ -1,11 +1,37 @@
-git init;
-git add .;
-git commit -m "first commit";
 
-REPO_NAME=automation-in-repository-creation
+function createLocalRopository {
+    git init;
+    git add .;
+    git commit -m "first commit";
+    echo Local repository created successfully
+}
 
-curl -i -u "$USER_GITHUB:$TOKEN_GITHUB" https://api.github.com/user/repos -d '{"name":"'$REPO_NAME'"}'
-sleep 3
-git remote add origin https://github.com/$USER_GITHUB/$REPO_NAME
-git push --set-upstream origin master
+function createRemoteRepository {
+    echo repository name
+    read REPOSITORY_NAME
+
+    curl -i -u "$USER_GITHUB:$TOKEN_GITHUB" https://api.github.com/user/repos -d '{"name":"'$REPOSITORY_NAME'"}'
+    sleep 2
+    git remote add origin https://github.com/$USER_GITHUB/$REPOSITORY_NAME
+    git push --set-upstream origin master
+    echo Remote repository created successfully
+}
+
+echo create a Local repository?yes-1 or not-0
+read hasLocalRepository
+
+if [ $hasLocalRepository -eq 1 ]
+then
+    echo creating Local repository
+    createLocalRopository
+fi
+
+echo create a remote repository?yes-1 or not-0
+read hasRemoteRepository
+
+if [ $hasRemoteRepository -eq 1 ]
+then
+    echo creating remote repository
+    createLocalRopository
+fi
 
