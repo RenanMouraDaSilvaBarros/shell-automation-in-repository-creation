@@ -1,5 +1,6 @@
 function createLocalRopository {
     git init;
+    echo readme > readme.md
     git add .;
     git commit -m "first commit";
     echo Local repository created successfully
