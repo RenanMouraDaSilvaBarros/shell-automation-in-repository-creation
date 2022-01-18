@@ -32,6 +32,6 @@ read hasRemoteRepository
 if [ $hasRemoteRepository -eq 1 ]
 then
     echo creating remote repository
-    createLocalRopository
+    createRemoteRepository
 fi
 
