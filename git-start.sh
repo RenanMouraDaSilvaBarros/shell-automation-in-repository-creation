@@ -1,4 +1,3 @@
-
 function createLocalRopository {
     git init;
     git add .;
@@ -12,7 +11,7 @@ function createRemoteRepository {
 
     curl -i -u "$USER_GITHUB:$TOKEN_GITHUB" https://api.github.com/user/repos -d '{"name":"'$REPOSITORY_NAME'"}'
     sleep 2
-    git remote add origin https://github.com/$USER_GITHUB/$REPOSITORY_NAME
+    git remote add origin https://github.com/$USER_GITHUB/$REPOSITORY_NAME.git
     git push --set-upstream origin master
     echo Remote repository created successfully
 }
@@ -34,4 +33,6 @@ then
     echo creating remote repository
     createRemoteRepository
 fi
+
+
 
