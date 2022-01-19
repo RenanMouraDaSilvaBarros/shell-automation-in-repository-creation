@@ -14,6 +14,7 @@ function createRemoteRepository {
     sleep 2
     git remote add origin https://github.com/$USER_GITHUB/$REPOSITORY_NAME.git
     git push --set-upstream origin master
+    google-chrome https://github.com/$USER_GITHUB/$REPOSITORY_NAME.git
     echo Remote repository created successfully
 }
 
