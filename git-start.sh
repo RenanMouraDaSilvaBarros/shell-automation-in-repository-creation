@@ -7,9 +7,6 @@ function createLocalRopository {
 }
 
 function createRemoteRepository {
-    echo repository name
-    read REPOSITORY_NAME
-
     curl -i -u "$USER_GITHUB:$TOKEN_GITHUB" https://api.github.com/user/repos -d '{"name":"'$REPOSITORY_NAME'"}'
     sleep 2
     git remote add origin https://github.com/$USER_GITHUB/$REPOSITORY_NAME.git
@@ -18,19 +15,22 @@ function createRemoteRepository {
     echo Remote repository created successfully
 }
 
-echo create a Local repository?yes-1 or not-0
-read hasLocalRepository
+echo  enter the repository name: 
+read REPOSITORY_NAME
 
-if [ $hasLocalRepository -eq 1 ]
+echo create a Local repository?yes-1 or not-0
+read HASLOCALREPOSITORY
+
+if [ $HASLOCALREPOSITORY -eq 1 ]
 then
     echo creating Local repository
     createLocalRopository
 fi
 
 echo create a remote repository?yes-1 or not-0
-read hasRemoteRepository
+read HASREMOTEREPOSITORY
 
-if [ $hasRemoteRepository -eq 1 ]
+if [ $HASREMOTEREPOSITORY -eq 1 ]
 then
     echo creating remote repository
     createRemoteRepository
